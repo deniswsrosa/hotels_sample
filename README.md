@@ -33,8 +33,14 @@ This database has 8076 hotels, each document is similar to the following
 Note that the field **price** has no standard format.
 
 
-##How to import this dataset in Couchbase
+## How to import this dataset in Couchbase
 
 1) Create a new bucket( Eg. a new bucket called **test**)
 2) Unzip the hotels.json.zip in a directory
-3) Go to the directory where Couchbase was installed, on mac it is usually at `/Applications/Couchbase Server.app/Contents/Resources/couchbase-core/bin`
+3) Go to the bin directory of your Couchbase installation, on mac it is usually at `/Applications/Couchbase Server.app/Contents/Resources/couchbase-core/bin`
+4) Run the following command:
+`./cbimport json -c couchbase://COUCHBASE_INSTALLATION_IP_ADDRESS:8091 -u COUCHBASE_USERNAME -p COUCHBASE_PASSOWRD -b MY_BUCKET_NAME -d file://DIRECTORY_WHERE_YOU_UNZIPED_THE_DATASET/hotels.json -f lines -g %id% -t 4`
+OBS: On my machine, the command looks like the following:
+`./cbimport json -c couchbase://localhost:8091 -u Administrator -p password -b test -d file:///Users/deniswsrosa/Downloads/hotels-master/docs/hotels.json -f lines -g %id% -t 4`
+5) On Couchbase Web Console, go to **Query**  and create a primariy index (if you don't have one yet)
+`create primary index on MY_BUCKET_NAME`
