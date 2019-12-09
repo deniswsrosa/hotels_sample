@@ -44,5 +44,6 @@ Note that the field **price** has no standard format.
 OBS: On my machine, the command looks like the following:
 
 `./cbimport json -c couchbase://localhost:8091 -u Administrator -p password -b test -d file:///Users/deniswsrosa/Downloads/hotels-master/docs/hotels.json -f lines -g %id% -t 4`
+
 5) On Couchbase Web Console, go to **Query**  and create a primariy index (if you don't have one yet)
 `create primary index on MY_BUCKET_NAME`
